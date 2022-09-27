@@ -1,4 +1,4 @@
-import { Component} from 'react';
+import React from 'react';
 import { mapper } from './utils/mapper';
 import { GalleryList } from './GalleryList.jsx/GalleryList';
 import { SearchBar } from './SearchBar/SearchBar';
@@ -10,7 +10,15 @@ import { LoaderSpinner } from './Loader/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export class App extends Component {
+interface IState {
+    images: {}[],
+    page: number,
+    loading: boolean,
+    query: string,
+    largeIMG: string
+}
+
+export class App extends React.Component <unknown, IState > {
   state = {
     images: [],
     page: 1,
@@ -19,7 +27,7 @@ export class App extends Component {
     largeIMG: ""
   };
  
-componentDidUpdate( _ ,prevState) {
+componentDidUpdate( _: unknown ,prevState: { query: string; page: number; }): void {
   if (prevState.query !== this.state.query ) {
     this.searchImg()
   }else if(prevState.page !== this.state.page && this.state.page !== 1){
@@ -33,7 +41,7 @@ componentDidUpdate( _ ,prevState) {
     .finally(() => this.setState({loading: false}))
   }
 
-  handlerSubmit = (queue) => {
+  handlerSubmit = (queue: string): void => {
     this.setState({query: queue})
   }
 
@@ -43,7 +51,7 @@ componentDidUpdate( _ ,prevState) {
     .finally(() => this.setState({loading: false}))
   }
 
-  handlerModal = (largeIMG) => {
+  handlerModal = (largeIMG: string): void => {
     this.setState({largeIMG: largeIMG})
   }
 
