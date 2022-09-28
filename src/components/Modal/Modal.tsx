@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./Modal.module.css"
-const body = document.querySelector('body');
 
 interface IProp {
   onClose: () => void

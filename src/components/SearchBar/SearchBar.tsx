@@ -1,7 +1,6 @@
 import React from 'react';
 import { toast, ToastContent } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PropTypes from "prop-types"
 import s from "./SearchBar.module.css"
 
 interface IProp{
