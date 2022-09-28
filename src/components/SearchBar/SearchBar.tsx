@@ -1,16 +1,20 @@
-import { Component } from "react";
-import { toast } from 'react-toastify';
+import React from 'react';
+import { toast, ToastContent } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PropTypes from "prop-types"
 import s from "./SearchBar.module.css"
 
-export class SearchBar extends Component { 
+interface IProp{
+  onSubmit : (arg: string) => void
+}
+
+export class SearchBar extends React.Component<IProp, {value: string} > { 
     
     state = {
         value : ""
     }
     
-    handleSubmit = (event) => {
+    handleSubmit = (event: React.MouseEvent<HTMLFormElement>):ToastContent<string> => {
         event.preventDefault()
         if (this.state.value.trim() !== "") {
                  this.props.onSubmit(this.state.value)
@@ -20,8 +24,8 @@ export class SearchBar extends Component {
 
     }
 
-    handleChange = (event) => {
-        const {value} = event.target
+    handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const {value} = event.target as EventTarget & {value: string}
         return this.setState({value: value})}
     
     
@@ -41,8 +45,4 @@ export class SearchBar extends Component {
   </form>
 </header>
     }
-}
-
-SearchBar.propTypes = {
-    onSubmit: PropTypes.func
 }

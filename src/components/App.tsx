@@ -15,7 +15,7 @@ interface IState {
     page: number,
     loading: boolean,
     query: string,
-    largeIMG: string
+    largeIMG?: string
 }
 
 export class App extends React.Component <unknown, IState > {
@@ -51,7 +51,7 @@ componentDidUpdate( _: unknown ,prevState: { query: string; page: number; }): vo
     .finally(() => this.setState({loading: false}))
   }
 
-  handlerModal = (largeIMG: string): void => {
+  handlerModal = (largeIMG?: string): void => {
     this.setState({largeIMG: largeIMG})
   }
 
